@@ -44,6 +44,12 @@ function requireAdmin(req, res, next) {
   return res.redirect('/admin');
 }
 
+app.get('/debug-env', (req, res) => {
+  res.send(
+    'ADMIN_PASSWORD saat ini: "' + ADMIN_PASSWORD + '" (panjang: ' + ADMIN_PASSWORD.length + ' karakter)'
+  );
+});
+
 // ---------- Halaman Publik ----------
 app.get('/', (req, res) => {
   const totalItem = db.prepare('SELECT COUNT(*) AS total FROM items').get().total;
