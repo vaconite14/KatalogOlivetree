@@ -1,0 +1,255 @@
+:root {
+  --primary: #b06a5c;
+  --dark: #2b2320;
+  --bg: #faf6f2;
+  --card-bg: #ffffff;
+  --border: #e8ded6;
+  --danger: #c0392b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--dark);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 32px;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar a {
+  color: var(--dark);
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 20px;
+}
+
+.navbar .brand {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-left: 0;
+}
+
+.hero {
+  text-align: center;
+  padding: 90px 20px;
+}
+
+.hero h1 {
+  font-size: 2.4rem;
+  margin-bottom: 12px;
+}
+
+.hero p {
+  color: #6b6058;
+  margin-bottom: 28px;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn.secondary {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.btn.danger {
+  background: var(--danger);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 22px;
+  margin-top: 24px;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background: #f0eae4;
+}
+
+.card .no-image {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a99b8f;
+  background: #f0eae4;
+  font-size: 0.9rem;
+}
+
+.card-body {
+  padding: 14px 16px;
+}
+
+.card-body h3 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+}
+
+.card-body .harga {
+  color: var(--primary);
+  font-weight: 700;
+  margin: 4px 0;
+}
+
+.card-body .stok {
+  font-size: 0.85rem;
+  color: #6b6058;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #a99b8f;
+}
+
+/* ---- Admin ---- */
+.login-box {
+  max-width: 360px;
+  margin: 90px auto;
+  background: var(--card-bg);
+  padding: 32px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.login-box h2 {
+  margin-top: 0;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="file"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 14px;
+  font-size: 0.95rem;
+}
+
+label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.error {
+  color: var(--danger);
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.form-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px;
+  margin-bottom: 30px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card-bg);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  font-size: 0.92rem;
+  vertical-align: middle;
+}
+
+th {
+  background: #f4ede7;
+}
+
+td img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.actions-cell form {
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.edit-row {
+  display: none;
+  background: #fbf7f3;
+}
+
+.edit-row.open {
+  display: table-row;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0;
+  font-size: 0.9rem;
+}
