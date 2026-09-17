@@ -90,6 +90,30 @@ body {
   margin-top: 24px;
 }
 
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .card img,
+  .card .no-image {
+    height: 140px;
+  }
+
+  .card-body {
+    padding: 10px 12px;
+  }
+
+  .card-body h3 {
+    font-size: 0.9rem;
+  }
+
+  .harga {
+    font-size: 0.9rem;
+  }
+}
+
 .card {
   background: var(--card-bg);
   border: 1px solid var(--border);
