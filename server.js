@@ -59,16 +59,15 @@ function getItemsWithImages() {
 
 // ---------- Halaman Publik ----------
 app.get('/', (req, res) => {
-  const totalItem = db.prepare('SELECT COUNT(*) AS total FROM items').get().total;
-  res.render('index', { totalItem });
-});
-
-app.get('/katalog', (req, res) => {
   const items = getItemsWithImages();
   const kategoriSet = [
     ...new Set(items.map((i) => (i.kategori || '').trim()).filter(Boolean)),
   ];
   res.render('katalog', { items, kategoriList: kategoriSet });
+});
+
+app.get('/katalog', (req, res) => {
+  res.redirect('/');
 });
 
 // ---------- Admin: Login ----------
