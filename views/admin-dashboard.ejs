@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Kelola Produk</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <a class="brand" href="/">Toko Kami</a>
+    <div>
+      <a href="/katalog">Lihat Katalog</a>
+      <form method="POST" action="/admin/logout" style="display:inline">
+        <button type="submit" class="link-btn">Logout</button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="admin-header">
+      <h1>Kelola Produk</h1>
+    </div>
+
+    <div class="form-card">
+      <h3>Tambah Produk Baru</h3>
+      <form method="POST" action="/admin/items" enctype="multipart/form-data">
+        <div class="form-row">
+          <div>
+            <label>Nama Produk</label>
+            <input type="text" name="nama" required />
+          </div>
+          <div>
+            <label>Gambar</label>
+            <input type="file" name="gambar" accept="image/*" />
+          </div>
+          <div>
+            <label>Jumlah Stok</label>
+            <input type="number" name="jumlah" min="0" value="0" required />
+          </div>
+          <div>
+            <label>Harga (Rp, opsional)</label>
+            <input type="number" name="harga" min="0" value="0" />
+          </div>
+        </div>
+        <button class="btn" type="submit">Tambah Produk</button>
+      </form>
+    </div>
+
+    <% if (items.length === 0) { %>
+      <div class="empty-state">Belum ada produk.</div>
+    <% } else { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Gambar</th>
+            <th>Nama</th>
+            <th>Stok</th>
+            <th>Harga</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% items.forEach(item => { %>
+            <tr>
+              <td><% if (item.gambar) { %><img src="<%= item.gambar %>" alt="" /><% } else { %>—<% } %></td>
+              <td><%= item.nama %></td>
+              <td><%= item.jumlah %></td>
+              <td><%= item.harga ? 'Rp ' + item.harga.toLocaleString('id-ID') : '-' %></td>
+              <td class="actions-cell">
+                <button type="button" class="link-btn" onclick="toggleEdit(<%= item.id %>)">Edit</button>
+                <form method="POST" action="/admin/items/<%= item.id %>/delete" style="display:inline" onsubmit="return confirm('Hapus produk ini?')">
+                  <button type="submit" class="link-btn" style="color:#c0392b">Hapus</button>
+                </form>
+              </td>
+            </tr>
+            <tr class="edit-row" id="edit-<%= item.id %>">
+              <td colspan="5">
+                <form method="POST" action="/admin/items/<%= item.id %>/update" enctype="multipart/form-data">
+                  <div class="form-row">
+                    <div>
+                      <label>Nama Produk</label>
+                      <input type="text" name="nama" value="<%= item.nama %>" required />
+                    </div>
+                    <div>
+                      <label>Ganti Gambar (opsional)</label>
+                      <input type="file" name="gambar" accept="image/*" />
+                    </div>
+                    <div>
+                      <label>Jumlah Stok</label>
+                      <input type="number" name="jumlah" min="0" value="<%= item.jumlah %>" required />
+                    </div>
+                    <div>
+                      <label>Harga (Rp)</label>
+                      <input type="number" name="harga" min="0" value="<%= item.harga %>" />
+                    </div>
+                  </div>
+                  <button class="btn" type="submit">Simpan Perubahan</button>
+                  <button class="btn secondary" type="button" onclick="toggleEdit(<%= item.id %>)">Batal</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+  </div>
+
+  <script>
+    function toggleEdit(id) {
+      const row = document.getElementById('edit-' + id);
+      row.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

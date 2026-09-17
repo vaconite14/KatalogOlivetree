@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Katalog Produk — Toko Kami</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <a class="brand" href="/">Toko Kami</a>
+    <div>
+      <a href="/katalog">Katalog</a>
+      <a href="/admin">Admin</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>Katalog Produk</h1>
+
+    <% if (items.length === 0) { %>
+      <div class="empty-state">Belum ada produk. Tambahkan lewat halaman admin.</div>
+    <% } else { %>
+      <div class="grid">
+        <% items.forEach(item => { %>
+          <div class="card">
+            <% if (item.gambar) { %>
+              <img src="<%= item.gambar %>" alt="<%= item.nama %>" />
+            <% } else { %>
+              <div class="no-image">Tidak ada gambar</div>
+            <% } %>
+            <div class="card-body">
+              <h3><%= item.nama %></h3>
+              <% if (item.harga && item.harga > 0) { %>
+                <div class="harga">Rp <%= item.harga.toLocaleString('id-ID') %></div>
+              <% } %>
+              <div class="stok">
+                <% if (item.jumlah > 0) { %>
+                  Stok: <%= item.jumlah %>
+                <% } else { %>
+                  Stok habis
+                <% } %>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>
